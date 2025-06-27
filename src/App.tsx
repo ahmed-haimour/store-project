@@ -1,37 +1,72 @@
-import { useState } from "react";
+import { useState, type ChangeEvent } from "react";
 import ProductCard from "./components/ProductCard";
 import Modal from "./components/ui/Modal";
-import { productList } from "./data";
+import { formInputList, productList } from "./data";
 import Button from "./components/ui/Button";
+import Input from "./components/ui/Input";
+import type { IProduct } from "./interfaces";
 function App() {
   /*-------------STATE-------------*/
+  const [product, setProduct] = useState<IProduct>({
+    title: "",
+    description: "",
+    imageURL: "",
+    price: "",
+    colors: [],
+    category: {
+      name: "",
+      imageURL: "",
+    },
+  });
   const [isOpen, setIsOpen] = useState(false);
 
   /*-------------HANDLER-------------*/
-  function closeModal() {
-    setIsOpen(false);
-  }
+  const closeModal = () => setIsOpen(false);
+  const openModal = () => setIsOpen(true);
 
-  function openModal() {
-    setIsOpen(true);
+  function onChangeHandler(event: ChangeEvent<HTMLInputElement>) {
+    const { value, name } = event.target;
+    setProduct({
+      ...product,
+      [name]: value,
+    });
   }
 
   const renderProductList = productList.map((product) => (
     <ProductCard key={product.id} product={product} />
   ));
 
+  const renderFormInputList = formInputList.map((input) => (
+    <div>
+      <label
+        htmlFor={input.id}
+        className="mb-[2px] text-sm font-medium text-shadow-gray-700"
+      >
+        {input.label}
+      </label>
+      <Input type="text" id={input.id} name={input.name} value={product[input.name]} onChange={onChangeHandler} />
+    </div>
+  ));
+
   return (
     <main className="container mx-auto">
-      <Button className="bg-indigo-700 hover:bg-indigo-800" onClick={openModal}>Add</Button>
+      <Button className="bg-indigo-700 hover:bg-indigo-800" onClick={openModal}>
+        Add
+      </Button>
 
       <div className=" m-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4 p-2 rounded-md">
         {renderProductList}
       </div>
       <Modal isOpen={isOpen} closeModal={closeModal} title="ADD A NEW PRODUCT">
-        <div className="flex items-center space-x-3">
-          <Button className="bg-indigo-700 hover:bg-indigo-800">Submit</Button>
-          <Button className="bg-gray-500 hover:bg-gray-600">Cancle</Button>
-        </div>
+        <form className="space-y-2">
+          {renderFormInputList}
+          <div className="flex items-center space-x-3">
+            <Button className="bg-indigo-700 hover:bg-indigo-800">
+              Submit
+            </Button>
+            <Button className="bg-gray-500 hover:bg-gray-600">Cancle</Button>
+          </div>
+        </form>
       </Modal>
     </main>
   );
