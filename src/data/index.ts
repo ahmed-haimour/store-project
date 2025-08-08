@@ -1,5 +1,5 @@
 import { v4 as uuid } from "uuid";
-import type { IFormInput, IProduct } from "../interfaces";
+import type { ICategory, IFormInput, IProduct } from "../interfaces";
 
 export const productList: IProduct[] = [
   {
@@ -129,29 +129,11 @@ export const formInputList: IFormInput[] = [
     label: "Price",
     type: "text",
   },
-  // {
-  //   id: "colors",
-  //   name: "colors",
-  //   label: "Available Colors",
-  //   type: "text",
-  // },
-  // {
-  //   id: "category",
-  //   name: "category.name",
-  //   label: "Category Name",
-  //   type: "text",
-  // },
-  // {
-  //   id: "categoryImage",
-  //   name: "category.imageURL",
-  //   label: "Category Image URL",
-  //   type: "text",
-  // },
 ];
 
 export const colors = [
   "#000000",
-   "#D4A373", // Warm Tan
+  "#D4A373", // Warm Tan
   "#C0C0C0",
   "#808080",
   "#3C2A21", // Dark Brown
@@ -162,4 +144,47 @@ export const colors = [
   "#FFC857", // Golden Yellow
   "#FF6F61", // Coral
   "#00B8A9", // Teal
+];
+
+export const categories: ICategory[] = [
+  {
+    id: uuid(),
+    name: "Wireless Headphones",
+    imageURL:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3wd5v3n10QKxXssWh_YrZCteDvACV2BHGUQ&s",
+  },
+  {
+    id: uuid(),
+    name: "Gaming Laptop",
+    imageURL:
+      "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQv2s5ukc4Sp8lxCcCUrpfvHtHIL0Qnbf5Gz3Ktp39JhrWS90-7hpphm4SnZa6FJ5xRJX29R9dAPpoJV15f8YTfuPiHCn88osQr_KRP3B71MQLpUoYTuPLcR-L8Oz4LoA&usqp=CAc",
+  },
+  {
+    id: uuid(),
+    name: "4K Monitor",
+    imageURL:
+      "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTGyng_POlxE-W8100agq1v5FWpFIdYJxm5yub5f0vJNaiBokPM00nz6xO025Hs9WRNzozJ7aTTJP9WBf_JXiXfcFdD2pFnoA0bKnRjCS0Pm8ps5EE3HCjJ4Ru0jPNCeSooOnqqdQ&usqp=CAc",
+  },
+  {
+    id: uuid(),
+    name: "Mechanical Keyboard",
+    imageURL:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNu4o_fpUoNwWf2VcDwlHRWbpk0ldjqGo8dQ&s",
+  },
+  {
+    id: uuid(),
+    name: "Bluetooth Speaker",
+    imageURL:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDNv2SFANvMgfLd9avBNJo0W5SxfnZGfXc8w&s",
+  },
+  {
+    id: uuid(),
+    name: "Smartphone",
+    imageURL: "https://via.placeholder.com/300?text=Smartphone",
+  },
+  {
+    id: uuid(),
+    name: "Drone Camera",
+    imageURL: "https://via.placeholder.com/300?text=Drone+Camera",
+  },
 ];

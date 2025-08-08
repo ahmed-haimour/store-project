@@ -1,4 +1,4 @@
-export function productValidation(product: { title: string, description: string, imageURL: string, price: string}) {
+export function productValidation(product: { title: string, description: string, imageURL: string, price: string }) {
   const errors: { title: string, description: string, imageURL: string, price: string} = {
     title: '',
     description: '',
@@ -24,6 +24,16 @@ const validUrl = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i.test(product.imageURL);
 
   if(!product.price.trim() || isNaN(Number(product.price))){
     errors.price = "Valid price is required!";
+  }
+
+  return errors;
+}
+
+export function colorValidation(color:string[]){
+  let errors:string = '';
+
+  if(color.length === 0){
+    errors = 'Color is required!';
   }
   return errors;
 }
